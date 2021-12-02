@@ -1,5 +1,14 @@
 const request = require('request-promise-native');
 
+const nextISSTimesForMyLocation = function(callback) {
+
+  fetchMyIp()
+    .then(fetchCoordsByIp)
+    .then(fetchIssFlyoverTimes)
+    .then((data) => callback(JSON.parse(data).response));
+
+};
+
 const fetchMyIp = function() {
   
 
@@ -22,8 +31,7 @@ const fetchIssFlyoverTimes = function(locationData) {
 
 };
 
+
 module.exports = {
-  fetchMyIp,
-  fetchCoordsByIp,
-  fetchIssFlyoverTimes
+  nextISSTimesForMyLocation
 };
