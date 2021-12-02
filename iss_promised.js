@@ -1,11 +1,14 @@
 const request = require('request-promise-native');
 
-const nextISSTimesForMyLocation = function(callback) {
+const nextISSTimesForMyLocation = function() {
 
-  fetchMyIp()
+  return fetchMyIp()
     .then(fetchCoordsByIp)
     .then(fetchIssFlyoverTimes)
-    .then((data) => callback(JSON.parse(data).response));
+    .then((data) => {
+      const { response } = JSON.parse(data);
+      return response;
+    });
 
 };
 
