@@ -1,4 +1,4 @@
-const { fetchMyIp, fetchCoordsByIp } = require("./iss");
+const { fetchMyIp, fetchCoordsByIp, fetchIssFlyoverTimes } = require("./iss");
 
 fetchMyIp((err, data)=> {
   if (err) {
@@ -6,11 +6,25 @@ fetchMyIp((err, data)=> {
     return;
   }
   let ipAddress  = data;
-  console.log(ipAddress);
 
   fetchCoordsByIp(ipAddress, (err, obj) =>{
-    console.log(err)
-    console.log(obj);
+
+    if (err) {
+
+      console.log(err);
+      return;
+    }
+    let geoCoordinates = obj;
+    
+    fetchIssFlyoverTimes(geoCoordinates, (err, data) => {
+
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(data);
+      
+    });
   });
 });
 
