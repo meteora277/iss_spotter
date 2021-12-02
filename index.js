@@ -22,7 +22,7 @@ nextISSTimesForMyLocation((err, data) => {
 
   } else {
     printPassTimes(data);
-  };
+  }
 
 });
 
