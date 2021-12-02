@@ -31,14 +31,15 @@ const fetchCoordsByIp = function(ipAddress, callback) {
     if (err) {
       console.log(err);
     }
-    if(status.statusCode !== 200)  {
-      console.log(`Status Code: ${status.statusCode}\n`, body);
+    if (status.statusCode !== 200)  {
+      let message = `Status Code: ${status.statusCode}, ${body}`;
+      callback(Error(message), null);
     } else {
 
       let data = JSON.parse(body);
       let longitude = data.longitude;
-      let latitude= data.latitude;
-      callback({latitude: latitude, longitude: longitude});
+      let latitude = data.latitude;
+      callback(null, {latitude: latitude, longitude: longitude});
     }
 
   });
