@@ -8,8 +8,8 @@ fetchMyIp((err, data)=> {
   let ipAddress  = data;
   console.log(ipAddress);
 
-  fetchCoordsByIp(ipAddress, (obj) =>{
-
+  fetchCoordsByIp(ipAddress, (err, obj) =>{
+    console.log(err)
     console.log(obj);
   });
 });
